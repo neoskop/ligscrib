@@ -21,7 +21,7 @@ export function getArgs(argv = process.argv) : { inputs: string[], outDir: strin
         .boolean('v')
         .describe('v', 'Verbose output')
         
-        .usage('\n  ligscrib <globs...>')
+        .usage('\n  Usage: ligscrib [options] <globs...>')
         .demandCommand(1)
         
         .parse(argv.slice(2));

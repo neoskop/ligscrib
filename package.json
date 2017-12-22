@@ -2,6 +2,17 @@
   "name": "ligscrib",
   "version": "1.0.0",
   "description": "Ligature icon font generator",
+  "keywords": [
+    "icon",
+    "icons",
+    "ligature",
+    "ligatures",
+    "font",
+    "fonts",
+    "generator",
+    "writer",
+    "converter"
+  ],
   "bin": "bin/ligscrib.js",
   "repository": "git@github.com:neoskop/ligscrib.git",
   "author": "Mark Wecke <wecke@neoskop.de>",
