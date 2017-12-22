@@ -1,5 +1,5 @@
 {
-  "name": "ligscrib",
+  "name": "@neoskop/ligscrib",
   "version": "1.0.0",
   "description": "Ligature icon font generator",
   "keywords": [
