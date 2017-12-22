@@ -20,18 +20,20 @@ $ ligscrib --help
   Usage: ligscrib [options] <globs...>
 
 Options:
-  --help                   Show help                                   [boolean]
-  --version                Show version number                         [boolean]
-  -o, --out-dir, --outDir  Output directory                       [default: "."]
-  -n, --name               Font file name (w/o file extension)[default: "icons"]
-  -e, --example            Create a HTML example file                  [boolean]
-  -v, --verbose            Verbose output                              [boolean]
+  --help                   Show help                                                       [boolean]
+  --version                Show version number                                             [boolean]
+  -o, --out-dir, --outDir  Output directory                                           [default: "."]
+  -n, --name               Font file name (w/o file extension)                    [default: "icons"]
+  -t, --types              Created font file types                   [default: "svg,ttf,woff,woff2"]
+  --css                    Create a CSS file (--no-css)                    [boolean] [default: true]
+  -e, --example            Create a HTML example file                                      [boolean]
+  -v, --verbose            Verbose output                                                  [boolean]
 ```
 
 ### Example
 
 ```bash
-$ ligscrip raw-icons/* -out-dir out --example
+$ ligscrip raw-icons/* --out-dir out --example
 ✔  added arrow-left as arrow_left
 ✔  added check
 ✔  added error

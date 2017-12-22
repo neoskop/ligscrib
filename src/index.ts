@@ -30,6 +30,10 @@ export async function main(argv = process.argv) {
         const log = args.verbose ? (...logs : any[]) => console.log(...logs) : () => {};
         const rlog = args.verbose ? (str : string) => process.stdout.write(str) : (_s : string) => {};
         
+        if(0 === args.types.size) {
+            throw new Error('No valid types provided'.red);
+        }
+        
         const files = await resolveInputGlobs(args.inputs);
         
         log('input files', files);
@@ -74,6 +78,10 @@ export async function main(argv = process.argv) {
             icons.add(name);
             fontStream.write(stream);
         }
+    
+        if(0 === icons.size) {
+            throw new Error('No valid files provided'.red);
+        }
         
         fontStream.end();
         
@@ -81,25 +89,37 @@ export async function main(argv = process.argv) {
         log('SVG Font created');
         
         await fs.mkdirp(args.outDir);
-        
-        rlog('Write svg... ');
         const svg = svgStream.getContents();
-        await fs.writeFile(path.join(args.outDir, `${args.name}.svg`), svg);
-        rlog('\u2714\n'.green);
-        rlog('Write ttf... ');
         const ttf = convertSvgToTtf(svg);
-        await fs.writeFile(path.join(args.outDir, `${args.name}.ttf`), ttf);
-        rlog('\u2714\n'.green);
-        rlog('Write woff... ');
-        await fs.writeFile(path.join(args.outDir, `${args.name}.woff`), convertTtf2Woff(ttf));
-        rlog('\u2714\n'.green);
-        rlog('Write woff2... ');
-        await fs.writeFile(path.join(args.outDir, `${args.name}.woff2`), convertTtf2Woff2(ttf));
-        rlog('\u2714\n'.green);
         
-        rlog('Write css... ');
-        await fs.writeFile(path.join(args.outDir, `${args.name}.css`), css(args.name));
-        rlog('\u2714\n'.green);
+        if(args.types.has('svg')) {
+            rlog('Write svg... ');
+            await fs.writeFile(path.join(args.outDir, `${args.name}.svg`), svg);
+            rlog('\u2714\n'.green);
+        }
+        
+        if(args.types.has('ttf')) {
+            rlog('Write ttf... ');
+            await fs.writeFile(path.join(args.outDir, `${args.name}.ttf`), ttf);
+            rlog('\u2714\n'.green);
+        }
+        if(args.types.has('woff')) {
+            rlog('Write woff... ');
+            await fs.writeFile(path.join(args.outDir, `${args.name}.woff`), convertTtf2Woff(ttf));
+            rlog('\u2714\n'.green);
+        }
+    
+        if(args.types.has('woff2')) {
+            rlog('Write woff2... ');
+            await fs.writeFile(path.join(args.outDir, `${args.name}.woff2`), convertTtf2Woff2(ttf));
+            rlog('\u2714\n'.green);
+        }
+        
+        if(args.css || args.example) {
+            rlog('Write css... ');
+            await fs.writeFile(path.join(args.outDir, `${args.name}.css`), css(args.name, args.types));
+            rlog('\u2714\n'.green);
+        }
     
         if(args.example) {
             rlog('Write html... ');

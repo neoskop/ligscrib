@@ -1,12 +1,27 @@
-export function css(name : string) : string {
+export function css(name : string, types : Set<string>) : string {
+    const src : string[] = [];
+    
+    if(types.has('ttf')) {
+        src.push(`url('${name}.ttf') format('truetype')`);
+    }
+    
+    if(types.has('woff')) {
+        src.push(`url('${name}.woff') format('woff')`);
+    }
+    
+    if(types.has('woff2')) {
+        src.push(`url('${name}.woff2') format('woff2')`);
+    }
+    
+    if(types.has('svg')) {
+        src.push(`url('${name}.svg#${name}') format('svg')`);
+    }
+    
     return `@font-face {
     font-family: '${name}';
-    src: url('${name}.ttf') format('truetype'),
-         url('${name}.woff') format('woff'),
-         url('${name}.woff2') format('woff2'),
-         url('${name}.svg#${name}') format('svg');
-     font-weight: normal;
-     font-style: normal;
+    src: ${src.join(',\n         ')};
+    font-weight: normal;
+    font-style: normal;
 }
 .${name} {
     /* use !important to prevent issues with browser extensions that change fonts */
