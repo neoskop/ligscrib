@@ -13,7 +13,9 @@
     "writer",
     "converter"
   ],
-  "bin": "bin/ligscrib.js",
+  "bin": {
+    "ligscrib": "./bin/ligscrib.js"
+  },
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "repository": "git@github.com:neoskop/ligscrib.git",
