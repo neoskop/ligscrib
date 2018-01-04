@@ -124,7 +124,7 @@ export async function main(argv = process.argv) {
         
         if(args.scss) {
             rlog('Write scss... ');
-            await fs.writeFile(path.join(args.outDir, `${args.name}.scss`), scss(args.name, args.types));
+            await fs.writeFile(path.join(args.outDir, `${args.name}.scss`), scss(args.name));
             rlog('\u2714\n'.green);
         }
     
