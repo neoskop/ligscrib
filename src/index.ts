@@ -13,6 +13,7 @@ import * as fs from 'fs-extra';
 // import sources
 import { getArgs } from './args';
 import { css } from './templates/css';
+import { scss } from './templates/scss';
 import { html } from './templates/html';
 import { convertSvgToTtf, convertTtf2Woff, convertTtf2Woff2 } from './converter';
 import { normalizeName, resolveInputGlobs } from './utils';
@@ -118,6 +119,12 @@ export async function main(argv = process.argv) {
         if(args.css || args.example) {
             rlog('Write css... ');
             await fs.writeFile(path.join(args.outDir, `${args.name}.css`), css(args.name, args.types));
+            rlog('\u2714\n'.green);
+        }
+        
+        if(args.scss) {
+            rlog('Write scss... ');
+            await fs.writeFile(path.join(args.outDir, `${args.name}.scss`), scss(args.name, args.types));
             rlog('\u2714\n'.green);
         }
     
