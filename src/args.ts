@@ -3,7 +3,7 @@ import * as pkg from '../package.json';
 
 export const ALLOWED_TYPES = new Set(['svg', 'ttf', 'woff', 'woff2']);
 
-export function getArgs(argv = process.argv) : { inputs: string[], outDir: string, name: string, verbose: boolean, css: boolean, example: boolean, types: Set<string> } {
+export function getArgs(argv = process.argv) : { inputs: string[], outDir: string, name: string, verbose: boolean, css: boolean, scss: boolean, example: boolean, types: Set<string> } {
     const args = yargs
         .version(pkg.version)
         
@@ -22,6 +22,10 @@ export function getArgs(argv = process.argv) : { inputs: string[], outDir: strin
         .boolean('css')
         .describe('css', 'Create a CSS file (--no-css)')
         .default('css', true)
+        
+        .boolean('scss')
+        .describe('scss', 'Create a SCSS file')
+        .default('scss', false)
         
         .alias('e', 'example')
         .boolean('e')
@@ -50,6 +54,7 @@ export function getArgs(argv = process.argv) : { inputs: string[], outDir: strin
         outDir: args.outDir,
         name: args.name,
         css: args.css,
+        scss: args.scss,
         example: args.example,
         verbose: args.verbose,
         types
