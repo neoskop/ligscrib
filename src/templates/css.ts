@@ -1,16 +1,16 @@
 export function css(name : string, types : Set<string>) : string {
     const src : string[] = [];
     
-    if(types.has('ttf')) {
-        src.push(`url('${name}.ttf') format('truetype')`);
+    if(types.has('woff2')) {
+        src.push(`url('${name}.woff2') format('woff2')`);
     }
     
     if(types.has('woff')) {
         src.push(`url('${name}.woff') format('woff')`);
     }
     
-    if(types.has('woff2')) {
-        src.push(`url('${name}.woff2') format('woff2')`);
+    if(types.has('ttf')) {
+        src.push(`url('${name}.ttf') format('truetype')`);
     }
     
     if(types.has('svg')) {
