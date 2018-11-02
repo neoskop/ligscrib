@@ -21,6 +21,11 @@
   "repository": "git@github.com:neoskop/ligscrib.git",
   "author": "Mark Wecke <wecke@neoskop.de>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "publish-please": "publish-please",
+    "prepublishOnly": "publish-please guard"
+  },
   "devDependencies": {
     "@types/fs-extra": "5.0.0",
     "@types/glob": "5.0.34",
@@ -28,6 +33,7 @@
     "@types/source-map-support": "0.4.0",
     "@types/stream-buffers": "3.0.2",
     "@types/yargs": "10.0.0",
+    "publish-please": "5.1.1",
     "typescript": "2.6.2"
   },
   "dependencies": {
