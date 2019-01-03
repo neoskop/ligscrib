@@ -41,7 +41,7 @@ export function getArgs(argv = process.argv) : { inputs: string[], outDir: strin
         
         .parse(argv.slice(2));
     
-    const types = new Set<string>(args.types.split(/,/));
+    const types = new Set<string>((args.types as string).split(/,/));
     
     types.forEach(type => {
         if(!ALLOWED_TYPES.has(type)) {
@@ -51,12 +51,12 @@ export function getArgs(argv = process.argv) : { inputs: string[], outDir: strin
     
     return {
         inputs: args._,
-        outDir: args.outDir,
-        name: args.name,
-        css: args.css,
-        scss: args.scss,
-        example: args.example,
-        verbose: args.verbose,
+        outDir: args.outDir as string,
+        name: args.name as string,
+        css: args.css as boolean,
+        scss: args.scss as boolean,
+        example: args.example as boolean,
+        verbose: args.verbose as boolean,
         types
     };
 }
