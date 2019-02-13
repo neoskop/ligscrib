@@ -13,5 +13,5 @@ export async function resolveInputGlobs(inputs : string[]) : Promise<string[]> {
 }
 
 export function normalizeName(name : string) {
-    return name.toLowerCase().replace(/-/g, '_').replace(/[^a-z_]/g, '');
+    return name.toLowerCase().replace(/-/g, '_').replace(/[^a-z0-9_]/g, '');
 }
