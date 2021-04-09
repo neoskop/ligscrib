@@ -23,8 +23,9 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "publish-please": "publish-please",
-    "prepublishOnly": "publish-please guard"
+    "publish-next": "npm run build && npm publish --tag next",
+    "publish-latest-only": "npm run build && npm publish",
+    "publish-latest": "npm run publish-latest-only && npm dist-tag add @neoskop/ligscrib@`jq '.version' package.json -r` next"
   },
   "devDependencies": {
     "@types/fs-extra": "5.0.4",
@@ -33,7 +34,6 @@
     "@types/source-map-support": "0.4.1",
     "@types/stream-buffers": "3.0.2",
     "@types/yargs": "12.0.5",
-    "publish-please": "5.4.3",
     "typescript": "3.2.2"
   },
   "dependencies": {
