@@ -4,6 +4,8 @@
 
 ## Install
 
+Ligscrib requires NodeJS version 10 or later.
+
 ```bash
 # using yarn
 $ yarn global add @neoskop/ligscrib

@@ -50,7 +50,7 @@ export function getArgs(argv = process.argv) : { inputs: string[], outDir: strin
     });
     
     return {
-        inputs: args._,
+        inputs: args._.map(String),
         outDir: args.outDir as string,
         name: args.name as string,
         css: args.css as boolean,
