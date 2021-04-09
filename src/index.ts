@@ -91,6 +91,11 @@ export async function main(argv = process.argv) {
         
         await fs.mkdirp(args.outDir);
         const svg = svgStream.getContents();
+
+        if(!svg) {
+            throw new Error('Could not generate SVG'.red);
+        }
+
         const ttf = convertSvgToTtf(svg);
         
         if(args.types.has('svg')) {
